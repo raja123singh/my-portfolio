@@ -26,17 +26,16 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/80 dark:bg-[#0b1120]/80 backdrop-blur-md shadow-md py-4'
-          : 'bg-transparent py-6'
-      }`}
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
+        ? 'bg-white/80 dark:bg-[#0b1120]/80 backdrop-blur-md shadow-md py-4'
+        : 'bg-transparent py-6'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500 cursor-pointer">
             <Link to="hero" smooth={true} duration={500}>
-              RJS.
+              Portfolio
             </Link>
           </div>
 

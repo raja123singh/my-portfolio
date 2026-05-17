@@ -95,16 +95,18 @@ const Contact = () => {
       setErrors(validationErrors);
       return;
     }
-    
+
     setIsSubmitting(true);
     setIsError(false);
     setIsSuccess(false);
-    
+
     try {
       // Fetch credentials from environment variables
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      console.log('EmailJS Config:', { serviceId, templateId, publicKey: publicKey ? 'SET' : 'MISSING' });
 
       if (!serviceId || !templateId || !publicKey) {
         throw new Error("EmailJS credentials are missing. Please check your .env file.");
@@ -115,23 +117,32 @@ const Contact = () => {
         name: formData.name,
         email: formData.email,
         message: formData.message,
+        from_name: formData.name,
+        reply_to: formData.email,
+        to_email: 'rs2047552@gmail.com',
       };
 
+      console.log('Sending email with params:', templateParams);
+
       // Send the email using EmailJS
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
-      
+      const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.log('EmailJS Response:', response);
+
       setIsSuccess(true);
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setIsSuccess(false), 5000);
-      
+
     } catch (error) {
-      console.error('FAILED to send email:', error);
+      console.error('FAILED to send email. Full error:', error);
+      console.error('Error text:', error?.text);
+      console.error('Error status:', error?.status);
       setIsError(true);
       setTimeout(() => setIsError(false), 5000);
     } finally {
       setIsSubmitting(false);
     }
   };
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
