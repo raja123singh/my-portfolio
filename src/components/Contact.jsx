@@ -51,8 +51,8 @@ const contactInfo = [
   {
     icon: <FaLinkedin className="w-6 h-6" />,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/raja-jai-singh',
-    href: 'https://linkedin.com/in/raja-jai-singh',
+    value: 'linkedin.com/in/raja-jai-singh-465bb5241',
+    href: 'https://www.linkedin.com/in/raja-jai-singh-465bb5241',
   },
   {
     icon: <FaGithub className="w-6 h-6" />,
